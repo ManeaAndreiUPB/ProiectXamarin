@@ -2,7 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="BlankApp1.Views.Home">
-  
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+
+            <ImageButton Source ="{Binding Source}"
+                         HorizontalOptions="Center"
+                         VerticalOptions="End"
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         Grid.Row="1"
+                         Command="{Binding AddClicked}"
+                />
+            <ListView x:Name="MyListView"
+                      HasUnevenRows="True"
+                      ItemsSource="{Binding Items}"
+                      CachingStrategy="RecycleElement">
+
+                <!--Custom View Cells-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding ID}" />
+                                <Label Text="{Binding Content}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

@@ -32,6 +32,7 @@ namespace BlankApp1
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
+            containerRegistry.RegisterForNavigation<Post, PostViewModel>();
         }
     }
 }

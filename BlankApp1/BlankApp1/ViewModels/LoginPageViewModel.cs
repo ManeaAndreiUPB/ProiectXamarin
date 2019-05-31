@@ -1,19 +1,13 @@
 ﻿using BlankApp1.Views;
-using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinFormsAcademy.Utils;
 
 namespace BlankApp1.ViewModels
 {
-	public class LoginPageViewModel : ViewModelBase
+    public class LoginPageViewModel : ViewModelBase
     {
         public ICommand LoginClicked { get; set; }
 
@@ -50,26 +44,23 @@ namespace BlankApp1.ViewModels
 
         private async void Button_Clicked()
         {
-            string username = Username;
-            string password = Password;
-            bool remember = RememberMe;
             bool loggedIn = false;
 
-            Settings.RememberMe = remember;
+            Settings.RememberMe = _rememberMe;
 
-            if (remember)
+            if (_rememberMe)
             {
-                Settings.Username = username;
+                Settings.Username = _username;
 
                 if (Settings.Password == Settings.DefaultPassword)
                 {
-                    Settings.Password = password;
+                    Settings.Password = _password;
                 }
             }
             else
             {
-                Settings.Username = username;
-                if (Settings.Password == password)
+                Settings.Username = _username;
+                if (Settings.Password == _password)
                 {
                     Settings.Password = Settings.DefaultPassword;
                     loggedIn = true;
@@ -77,7 +68,7 @@ namespace BlankApp1.ViewModels
                 Settings.Username = string.Empty;
             }
 
-            if (loggedIn || (Settings.Password == password))
+            if (loggedIn || (Settings.Password == _password))
             {
                 await NavigationMethod.NavigateAsync(nameof(Home));
             }
